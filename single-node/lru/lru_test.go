@@ -11,7 +11,7 @@ func (d String) Len() int {
 	return len(d)
 }
 
-func Test_Get(t *testing.T) {
+func TestGet(t *testing.T) {
 	lru := New(int64(0), nil)
 	lru.Add("key1", String("1234"))
 	if v, ok := lru.Get("key1"); !ok || string(v.(String)) != "1234" {
@@ -22,7 +22,7 @@ func Test_Get(t *testing.T) {
 	}
 }
 
-func Test_RemoveOldest(t *testing.T) {
+func TestRemoveoldest(t *testing.T) {
 	k1, k2, k3 := "key1", "key2", "k3"
 	v1, v2, v3 := "value1", "value2", "v3"
 	cap := len(k1 + k2 + v1 + v2)
@@ -36,7 +36,7 @@ func Test_RemoveOldest(t *testing.T) {
 	}
 }
 
-func Test_OnEvicted(t *testing.T) {
+func TestOnEvicted(t *testing.T) {
 	keys := make([]string, 0)
 	callback := func(key string, value Value) {
 		keys = append(keys, key)
